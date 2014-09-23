@@ -1,0 +1,13 @@
+{% extends "admin/change_form.html" %}
+{% block extrahead %}{{ block.super }}
+    <script type="text/javascript">
+        (function($){
+            $(document).ready(function() {
+                $('select[name="type"]').on('change', function(evt) {
+                    var is_person = $('option:selected', $(evt.target)).data('is_person') === "True";
+                    $('{{ original.person_field_selectors }}').toggle(is_person);
+                }).trigger('change');
+            });
+        }(grp.jQuery));
+    </script>
+{% endblock %}
